@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Territory Map</title>
+  <style>
+    body { font-family: Arial; }
+    #map-container { position: relative; width: 800px; margin: auto; }
+    #info-box {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      width: 300px;
+    }
+    .hotspot {
+      position: absolute;
+      cursor: pointer;
+      border: 2px solid rgba(255,0,0,0.0); /* invisible but clickable area */
+    }
+  </style>
+</head>
+<body>
+  <h1>Sales Territory Map</h1>
+  <div id="map-container">
+    <img src="map.png" width="800">
+
+    <!-- Example hotspots (you will adjust these later) -->
+    <div class="hotspot" style="left:100px;top:120px;width:120px;height:100px;"
+         onclick="showInfo('Northeast Rep: John Smith, Sara Blake')"></div>
+
+    <div class="hotspot" style="left:300px;top:200px;width:150px;height:100px;"
+         onclick="showInfo('Midwest Rep: Kyle Turner')"></div>
+  </div>
+
+  <div id="info-box">Click a territory to see reps.</div>
+
+  <script>
+    function showInfo(text) {
+      document.getElementById('info-box').innerHTML = text;
+    }
+  </script>
+</body>
+</html>
+
