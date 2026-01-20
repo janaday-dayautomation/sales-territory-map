@@ -45,7 +45,7 @@
 
     <div id="map-box">
       <!-- IMPORTANT: make sure this filename matches your uploaded image -->
-      <img src="map-ny.png" alt="New York Regions Map" />
+      <img src="<img src="map-ny.png" alt="NY Territory Map">" alt="New York Regions Map" />
 
       <!-- Approximate clickable regions by label on the map.
            You can refine sizes and positions later.
