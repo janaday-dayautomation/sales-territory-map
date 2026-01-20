@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NY Territories — Sales Reps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --maxw: 1100px; }
+    body { font-family: Arial, Helvetica, sans-serif; margin: 24px; line-height: 1.45; }
+    h1 { margin: 0 0 8px 0; font-size: 1.6rem; }
+    p.helper { margin: 0 0 18px 0; color: #666; }
+    #wrap { max-width: var(--maxw); margin: 0 auto; }
+    #map-box { position: relative; width: 100%; }
+    #map-box img { display: block; width: 100%; height: auto; }
+
+    /* Hotspots: absolutely positioned rectangles in percentages.
+       While adjusting, the dashed border helps you see them.
+       Set border-color alpha to 0 when you are done. */
+    .hotspot {
+      position: absolute;
+      cursor: pointer;
+      border: 2px dashed rgba(255,0,0,0.18);
+      background: rgba(255,0,0,0.00);
+      border-radius: 6px;
+    }
+
+    #info {
+      max-width: var(--maxw);
+      margin: 16px auto 0;
+      padding: 12px 14px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+    #info h2 { margin: 0 0 6px 0; font-size: 1.1rem; }
+    #info ul { margin: 6px 0 0 18px; }
+    #info .placeholder { color: #666; }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <h1>New York Sales Territories</h1>
+    <p class="helper">Click a region on the map to see the assigned reps.</p>
+
+    <div id="map-box">
+      <!-- IMPORTANT: make sure this filename matches your uploaded image -->
+      <img src="map-ny.png" alt="New York Regions Map" />
+
+      <!-- Approximate clickable regions by label on the map.
+           You can refine sizes and positions later.
+           left/top/width/height are percentages of the image size. -->
+
+      <!-- WESTERN NEW YORK -->
+      <div class="hotspot"
+           style="left: 4%; top: 63%; width: 18%; height: 18%;"
+           onclick="show('Western New York')"></div>
+
+      <!-- FINGER LAKES -->
+      <div class="hotspot"
+           style="left: 20%; top: 52%; width: 18%; height: 16%;"
+           onclick="show('Finger Lakes')"></div>
+
+      <!-- CENTRAL NEW YORK -->
+      <div class="hotspot"
+           style="left: 34%; top: 42%; width: 16%; height: 16%;"
+           onclick="show('Central New York')"></div>
+
+      <!-- MOHAWK VALLEY -->
+      <div class="hotspot"
+           style="left: 50%; top: 40%; width: 14%; height: 18%;"
+           onclick="show('Mohawk Valley')"></div>
+
+      <!-- NORTH COUNTRY -->
+      <div class="hotspot"
+           style="left: 56%; top: 9%; width: 26%; height: 26%;"
+           onclick="show('North Country')"></div>
+
+      <!-- CAPITAL REGION -->
+      <div class="hotspot"
+           style="left: 70%; top: 35%; width: 20%; height: 22%;"
+           onclick="show('Capital Region')"></div>
+
+      <!-- SOUTHERN TIER -->
+      <div class="hotspot"
+           style="left: 33%; top: 62%; width: 22%; height: 16%;"
+           onclick="show('Southern Tier')"></div>
+
+      <!-- MID-HUDSON -->
+      <div class="hotspot"
+           style="left: 63%; top: 63%; width: 20%; height: 20%;"
+           onclick="show('Mid-Hudson')"></div>
+
+      <!-- NEW YORK CITY -->
+      <div class="hotspot"
+           style="left: 78%; top: 83%; width: 10%; height: 8%;"
+           onclick="show('New York City')"></div>
+
+      <!-- LONG ISLAND -->
+      <div class="hotspot"
+           style="left: 84%; top: 86%; width: 14%; height: 10%;"
+           onclick="show('Long Island')"></div>
+    </div>
+
+    <div id="info">
+      <h2>Territory</h2>
+      <div class="placeholder">Click a region to view reps.</div>
+      <ul id="reps"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Replace this with your real data. I provided placeholders for each region.
+    const repsByTerritory = {
+      "Western New York": ["Rep A", "Rep B"],
+      "Finger Lakes": ["Rep C", "Rep D"],
+      "Central New York": ["Rep E"],
+      "Mohawk Valley": ["Rep F"],
+      "North Country": ["Rep G"],
+      "Capital Region": ["Rep H"],
+      "Southern Tier": ["Rep I"],
+      "Mid-Hudson": ["Rep J"],
+      "New York City": ["Rep K"],
+      "Long Island": ["Rep L"]
+    };
+
+    function show(territory) {
+      const box = document.getElementById('info');
+      const title = box.querySelector('h2');
+      const list = document.getElementById('reps');
+      const placeholder = box.querySelector('.placeholder');
+
+      title.textContent = territory;
+      list.innerHTML = '';
+
+      const reps = repsByTerritory[territory] || [];
+      if (reps.length === 0) {
+        placeholder.textContent = 'No reps assigned yet.';
+        placeholder.style.display = 'block';
+        return;
+      }
+
+      placeholder.style.display = 'none';
+      reps.forEach(name => {
+        const li = document.createElement('li');
+        li.textContent = name;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
+``
